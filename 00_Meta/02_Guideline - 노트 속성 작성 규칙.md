@@ -11,7 +11,8 @@ aliases:
   - "YAML 규칙"
   - "Frontmatter Rules"
 source:
-  - "[[01_Protocol - PKG 노트 작성 규칙.md]]"
+  - medium: internal
+    value: "[[01_Protocol - PKG 노트 작성 규칙.md]]"
 description: "모든 노트 최상단의 YAML Frontmatter(속성) 영역에 일관된 메타데이터를 작성하기 위한 규칙."
 author: "admin"
 ---
@@ -54,10 +55,114 @@ author: "admin"
 - **규칙**: 하이픈(`-`)을 사용하여 목록(List) 형식으로 기입하며 따옴표로 감싸 기입한다.
 
 ### 2.2. `source`
-- **목적**: 정보의 출처를 명시하여 신뢰성을 높이고, 추후 참조를 용이하게 한다.
-- **규칙**: 하이픈(`-`)을 사용하여 목록(List) 형식으로 기입한다.
-    - **내부 문서**: 따옴표로 감싼 `"[[파일 링크]]"` 형식으로 연결한다.
-    - **외부 정보**: URL이나 책 제목 등 텍스트를 `"[설명](url)"` 형식으로 따옴표로 감싸 기입한다.
+
+* **목적**: 정보의 출처를 명시하여 신뢰성을 높이고, **출처의 종류를 식별하고 데이터를 활용**할 수 있도록 합니다.
+* **규칙**: 하이픈(`-`)을 사용하여 **객체(Object)의 목록(List)** 형식으로 기입합니다.
+    * 모든 출처 객체는 **`medium` 키를 반드시 포함**해야 합니다.
+    * 각 `medium`에 따라 권장되는 추가 키를 사용하여 출처 정보를 상세하고 일관되게 기록합니다.
+
+### 2.2.1. `source` 타입 목록
+
+#### 1. **`internal`**: 다른 노트
+
+* **설명**: 지식 그래프 내의 다른 노트를 출처로 삼을 때 사용합니다.
+* **필수 키**: `value` (Obsidian 링크 형식)
+* **예시**:
+```yaml
+source:
+  - medium: internal
+    value: "[[01_Protocol - PKG 노트 작성 규칙.md]]"
+```
+#### 2. **`url`**: 웹사이트, 기사
+
+* **설명**: 온라인 기사, 블로그 포스트, 웹사이트 등 일반적인 웹 출처에 사용합니다.
+* **필수 키**: `value`, `title`
+* **권장 키**: `author`, `access_date`
+* **예시**:
+```yaml
+source:
+  - medium: url
+    value: "[https://ko.wikipedia.org/wiki/](https://ko.wikipedia.org/wiki/)..."
+    title: "위키피디아: 개인 지식 관리"
+    author: "Wikipedia Contributors"
+    access_date: "2025-10-08"
+```
+
+#### 3. **`book`**: 책
+
+* **설명**: 단행본, 교재 등 서적을 출처로 사용할 때 사용합니다.
+* **필수 키**: `title`, `author`, `isbn`
+* **권장 키**: `publisher`, `year`
+* **예시**:
+```yaml
+source:
+  - medium: book
+    title: "Thinking, Fast and Slow"
+    author: "Daniel Kahneman"
+    isbn: "978-0374275631"
+    publisher: "Farrar, Straus and Giroux"
+    year: 2011
+```
+
+#### 4. **`paper`**: 논문
+
+* **설명**: 학술지, 학회 등에 발표된 논문을 출처로 사용할 때 사용합니다.
+* **필수 키**: `title`, `author`, `doi`
+* **권장 키**: `journal`, `year`
+* **예시**:
+```yaml
+source:
+  - medium: paper
+    title: "Attention Is All You Need"
+    author: "Ashish Vaswani, et al."
+    doi: "10.48550/arXiv.1706.03762"
+    journal: "NIPS"
+    year: 2017
+```
+
+#### 5. **`person`**: 사람
+
+* **설명**: 대화, 이메일, 강연 등 특정 인물로부터 직접 얻은 정보를 출처로 사용할 때 사용합니다.
+* **필수 키**: `name`, `context`
+* **권장 키**: `date`
+* **예시**:
+```yaml
+source:
+  - medium: person
+    name: "John Doe"
+    context: "Personal conversation about system architecture"
+    date: "2025-10-07"
+```
+
+#### 6. **`recording`**: 영상, 팟캐스트
+
+* **설명**: 유튜브 영상, 다큐멘터리, 팟캐스트 등 시청각 자료를 출처로 사용할 때 사용합니다.
+* **필수 키**: `title`, `creator`
+* **권장 키**: `platform`, `url`
+* **예시**:
+```yaml
+source:
+  - medium: recording
+    title: "The Power of Habit"
+    creator: "AsapSCIENCE"
+    platform: "YouTube"
+    url: "[https://www.youtube.com/watch?v=](https://www.youtube.com/watch?v=)..."
+```
+
+#### 7. **`event`**: 컨퍼런스, 강의
+
+* **설명**: 컨퍼런스 발표, 세미나 등 특정 이벤트를 출처로 사용할 때 사용합니다.
+* **필수 키**: `name`
+* **권장 키**: `speaker`, `date`, `location`
+* **예시**:
+```yaml
+source:
+  - medium: event
+    name: "Google I/O 2025 Keynote"
+    speaker: "Sundar Pichai"
+    date: "2025-05-12"
+    location: "Online"
+```
 
 ### 2.3. `description`
 - **목적**: 외부 애플리케이션에서 노트 목록을 표시할 때 사용할 '미리보기'용 요약문을 제공한다.
@@ -98,8 +203,16 @@ aliases:
   - "Schrodinger's Cat"
   - "고양이 역설"
 source:
-  - "https://ko.wikipedia.org/wiki/슈뢰딩거의_고양이"
-  - "Erwin Schrödinger, <Die gegenwärtige Situation in der Quantenmechanik>"
+  - medium: url
+    value: "https://ko.wikipedia.org/wiki/슈뢰딩거의_고양이"
+    title: "슈뢰딩거의 고양이 - 위키백과, 우리 모두의 백과사전"
+    access_date: "2025-10-08"
+  - medium: paper
+    title: "Die gegenwärtige Situation in der Quantenmechanik"
+    author: "Erwin Schrödinger"
+    doi: 10.1007/BF01491891
+    journal: "Naturwissenschaften"
+    year: 1935
 description: "양자 중첩 상태가 거시 세계의 대상에 어떻게 적용되는지의 역설을 보여주는 사고 실험."
 author: "schrdg-cat"
 image: "[[_Assets/images/schrodingers-cat.png]]"

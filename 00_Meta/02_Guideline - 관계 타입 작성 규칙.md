@@ -11,7 +11,8 @@ aliases:
   - "링크 컨벤션"
   - "Typed Links"
 source:
-  - "[[01_Protocol - PKG 노트 작성 규칙.md]]"
+  - medium: internal
+    value: "[[01_Protocol - PKG 노트 작성 규칙.md]]"
 description: "노트 본문 내 링크에 관계의 성격(관계 타입)을 명시하여 지식 그래프의 논리적 구조를 강화하는 규칙."
 author: "admin"
 ---

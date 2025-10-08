@@ -11,7 +11,15 @@ aliases:
   - "Getting Started"
   - "시스템 설정"
 source:
-  - "Obsidian, Git, Codespaces의 표준 설정 절차"
+  - medium: url
+    value: "https://help.obsidian.md/"
+    title: "Obsidian Help"
+  - medium: url
+    value: "https://git-scm.com/doc"
+    title: "Git Documentation"
+  - medium: url
+    value: "https://docs.github.com/en/codespaces"
+    title: "GitHub Codespaces Documentation"
 description: "새로운 컴퓨터 환경에서 이 지식 그래프 시스템을 사용하기 위한 초기 설정 절차"
 author: "admin"
 ---

@@ -10,7 +10,8 @@ aliases:
   - "PKG 컨벤션"
   - "노트 작성 규칙"
 source:
-  - "[[01_Protocol - PKG 노트 작성 규칙.md]]"
+  - medium: internal
+    value: "[[01_Protocol - PKG 노트 작성 규칙.md]]"
 description: "이 지식 그래프의 모든 노트를 일관된 방식으로 작성하고 관리하기 위한 최상위 규칙 체계."
 author: "admin"
 ---

@@ -10,7 +10,8 @@ aliases:
   - "커밋 컨벤션"
   - "Git Commit Convention"
 source:
-  - "[[01_Protocol - PKG 노트 작성 규칙.md]]"
+  - medium: internal
+  - value: "[[01_Protocol - PKG 노트 작성 규칙.md]]"
 description: "Git을 통해 수정 이력을 의미 있는 방식으로 기록하기 위한 커밋 메시지 작성 규칙."
 ---
 
